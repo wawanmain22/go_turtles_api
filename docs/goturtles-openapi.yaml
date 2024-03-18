@@ -1,0 +1,783 @@
+openapi: 3.0.0
+info:
+  title: Go Turtles API
+  description: API for managing turtle conservation efforts including tracking, breeding, and releasing turtles.
+  version: 1.0.0
+servers:
+  - url: "https://api.goturtles.com/v1"
+paths:
+  /users:
+    get:
+      summary: Gets a list of users
+      operationId: listUsers
+      tags:
+        - Users
+      responses:
+        "200":
+          description: A JSON array of user objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: Creates a new user
+      operationId: createUser
+      tags:
+        - Users
+      requestBody:
+        description: User to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /users/{id}:
+    put:
+      summary: Updates an existing user
+      operationId: updateUser
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the user
+      requestBody:
+        description: Data for updating the user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+    delete:
+      summary: Deletes a user
+      operationId: deleteUser
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the user to delete
+      responses:
+        "204":
+          description: User deleted successfully
+        "404":
+          description: User not found
+  /pos:
+    get:
+      summary: Gets a list of pos (positions)
+      operationId: listPos
+      tags:
+        - Pos
+      responses:
+        "200":
+          description: A JSON array of pos objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pos"
+    post:
+      summary: Creates a new pos
+      operationId: createPos
+      tags:
+        - Pos
+      requestBody:
+        description: Pos to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pos"
+      responses:
+        "201":
+          description: Pos created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pos"
+  /pos/{id}:
+    put:
+      summary: Updates an existing pos
+      operationId: updatePos
+      tags:
+        - Pos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the pos
+      requestBody:
+        description: Data for updating the pos
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pos"
+      responses:
+        "200":
+          description: Pos updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pos"
+        "404":
+          description: Pos not found
+    delete:
+      summary: Deletes a pos
+      operationId: deletePos
+      tags:
+        - Pos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the pos to delete
+      responses:
+        "204":
+          description: Pos deleted successfully
+        "404":
+          description: Pos not found
+  /penyu:
+    get:
+      summary: Gets a list of turtles (penyu)
+      operationId: listPenyu
+      tags:
+        - Penyu
+      responses:
+        "200":
+          description: A JSON array of turtle objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Penyu"
+    post:
+      summary: Creates a new turtle
+      operationId: createPenyu
+      tags:
+        - Penyu
+      requestBody:
+        description: Turtle to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Penyu"
+      responses:
+        "201":
+          description: Turtle created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Penyu"
+  /penyu/{id}:
+    put:
+      summary: Updates an existing penyu
+      operationId: updatePenyu
+      tags:
+        - Penyu
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the penyu
+      requestBody:
+        description: Data for updating the penyu
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Penyu"
+      responses:
+        "200":
+          description: Penyu updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Penyu"
+        "404":
+          description: Penyu not found
+    delete:
+      summary: Deletes a penyu
+      operationId: deletePenyu
+      tags:
+        - Penyu
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the penyu to delete
+      responses:
+        "204":
+          description: Penyu deleted successfully
+        "404":
+          description: Penyu not found
+  /pendaratan:
+    get:
+      summary: Gets a list of pendaratan records
+      operationId: listPendaratan
+      tags:
+        - Pendaratan
+      responses:
+        "200":
+          description: A JSON array of pendaratan records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pendaratan"
+    post:
+      summary: Creates a new pendaratan record
+      operationId: createPendaratan
+      tags:
+        - Pendaratan
+      requestBody:
+        description: Pendaratan record to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pendaratan"
+      responses:
+        "201":
+          description: Pendaratan record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pendaratan"
+  /pendaratan/{id}:
+    put:
+      summary: Updates an existing pendaratan record
+      operationId: updatePendaratan
+      tags:
+        - Pendaratan
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the pendaratan record to update
+      requestBody:
+        description: Data for updating the pendaratan record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pendaratan"
+      responses:
+        "200":
+          description: Pendaratan record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pendaratan"
+        "404":
+          description: Pendaratan record not found
+  /persemaian:
+    get:
+      summary: Gets a list of persemaian records
+      operationId: listPersemaian
+      tags:
+        - Persemaian
+      responses:
+        "200":
+          description: A JSON array of persemaian records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Persemaian"
+    post:
+      summary: Creates a new persemaian record
+      operationId: createPersemaian
+      tags:
+        - Persemaian
+      requestBody:
+        description: Persemaian record to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persemaian"
+      responses:
+        "201":
+          description: Persemaian record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persemaian"
+  /persemaian/{id}:
+    put:
+      summary: Updates an existing persemaian record
+      operationId: updatePersemaian
+      tags:
+        - Persemaian
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the persemaian record to update
+      requestBody:
+        description: Data for updating the persemaian record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persemaian"
+      responses:
+        "200":
+          description: Persemaian record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persemaian"
+        "404":
+          description: Persemaian record not found
+  /penetasan:
+    get:
+      summary: Gets a list of penetasan records
+      operationId: listPenetasan
+      tags:
+        - Penetasan
+      responses:
+        "200":
+          description: A JSON array of penetasan records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Penetasan"
+    post:
+      summary: Creates a new penetasan record
+      operationId: createPenetasan
+      tags:
+        - Penetasan
+      requestBody:
+        description: Penetasan record to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Penetasan"
+      responses:
+        "201":
+          description: Penetasan record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Penetasan"
+  /penetasan/{id}:
+    put:
+      summary: Updates an existing penetasan record
+      operationId: updatePenetasan
+      tags:
+        - Penetasan
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the penetasan record to update
+      requestBody:
+        description: Data for updating the penetasan record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Penetasan"
+      responses:
+        "200":
+          description: Penetasan record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Penetasan"
+        "404":
+          description: Penetasan record not found
+  /tukik:
+    get:
+      summary: Gets a list of tukik records
+      operationId: listTukik
+      tags:
+        - Tukik
+      responses:
+        "200":
+          description: A JSON array of tukik records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tukik"
+    post:
+      summary: Creates a new tukik record
+      operationId: createTukik
+      tags:
+        - Tukik
+      requestBody:
+        description: Tukik record to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tukik"
+      responses:
+        "201":
+          description: Tukik record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tukik"
+  /tukik/{id}:
+    put:
+      summary: Updates an existing tukik record
+      operationId: updateTukik
+      tags:
+        - Tukik
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the tukik record to update
+      requestBody:
+        description: Data for updating the tukik record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tukik"
+      responses:
+        "200":
+          description: Tukik record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tukik"
+        "404":
+          description: Tukik record not found
+  /pelepasan:
+    get:
+      summary: Gets a list of pelepasan records
+      operationId: listPelepasan
+      tags:
+        - Pelepasan
+      responses:
+        "200":
+          description: A JSON array of pelepasan records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pelepasan"
+    post:
+      summary: Creates a new pelepasan record
+      operationId: createPelepasan
+      tags:
+        - Pelepasan
+      requestBody:
+        description: Pelepasan record to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pelepasan"
+      responses:
+        "201":
+          description: Pelepasan record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pelepasan"
+  /pelepasan/{id}:
+    put:
+      summary: Updates an existing pelepasan record
+      operationId: updatePelepasan
+      tags:
+        - Pelepasan
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the pelepasan record to update
+      requestBody:
+        description: Data for updating the pelepasan record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pelepasan"
+      responses:
+        "200":
+          description: Pelepasan record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pelepasan"
+        "404":
+          description: Pelepasan record not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        nama:
+          type: string
+        email:
+          type: string
+          format: email
+        no_tlp:
+          type: string
+        gender:
+          type: string
+          enum: [laki, perempuan]
+        tgl_lahir:
+          type: string
+          format: date
+        alamat:
+          type: string
+        password:
+          type: string
+        level:
+          type: string
+          enum:
+            [
+              Wisata,
+              Donasi,
+              Investasi,
+              SuperAdmin,
+              PetugasPendaratan,
+              PetugasPersemaian,
+              PetugasPenetasan,
+              PetugasPelepasan,
+            ]
+    Pos:
+      type: object
+      properties:
+        id:
+          type: string
+        nama_pos:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+    Penyu:
+      type: object
+      properties:
+        id:
+          type: string
+        jenis_penyu:
+          type: string
+    Pendaratan:
+      type: object
+      required:
+        - pos_id
+        - tanggal
+        - jam_mendarat
+        - mendarat_bertelur
+        - mendarat_tdk_bertelur
+        - jumlah_telur
+        - user_id
+      properties:
+        id:
+          type: string
+        pos_id:
+          type: string
+          description: Foreign key to Pos table
+        tanggal:
+          type: string
+          format: date
+          description: The date of landing
+        jam_mendarat:
+          type: string
+          format: time
+          description: The time of landing
+        mendarat_bertelur:
+          type: integer
+          description: Number of turtles landing to lay eggs
+        mendarat_tdk_bertelur:
+          type: integer
+          description: Number of turtles landing but not laying eggs
+        jumlah_telur:
+          type: integer
+          description: Total number of eggs laid
+        keterangan:
+          type: string
+          description: Additional information
+        user_id:
+          type: string
+          description: Foreign key to User table, indicating who logged the landing event
+    Persemaian:
+      type: object
+      required:
+        - pendaratan_id
+        - penyu_id
+        - tanggal
+        - no_sarang
+        - jumlah_telur
+        - user_id
+      properties:
+        id:
+          type: string
+        pendaratan_id:
+          type: string
+          description: Foreign key to Pendaratan table
+        penyu_id:
+          type: string
+          description: Foreign key to Penyu table, indicating the turtle species
+        tanggal:
+          type: string
+          format: date
+          description: The date of the seeding
+        no_sarang:
+          type: integer
+          description: Nest number, must be unique for each nesting event.
+        jumlah_telur:
+          type: integer
+          description: Total number of eggs in the nest
+        keterangan:
+          type: string
+          description: Additional information
+        user_id:
+          type: string
+          description: Foreign key to User table, indicating who logged the seeding event
+    Penetasan:
+      type: object
+      required:
+        - persemaian_id
+        - penyu_id
+        - jmlh_telur_menetas
+        - jmlh_telur_tdk_menetas
+        - jmlh_tukik_hidup
+        - jmlh_tukik_mati
+        - lama_inkubasi
+        - user_id
+      properties:
+        id:
+          type: string
+        persemaian_id:
+          type: string
+          description: Foreign key to Persemaian table.
+        penyu_id:
+          type: string
+          description: Foreign key to Penyu table, indicating the turtle species associated with the eggs.
+        jmlh_telur_menetas:
+          type: integer
+          description: Number of eggs that hatched.
+        jmlh_telur_tdk_menetas:
+          type: integer
+          description: Number of eggs that did not hatch.
+        jmlh_tukik_hidup:
+          type: integer
+          description: Number of live hatchlings.
+        jmlh_tukik_mati:
+          type: integer
+          description: Number of hatchlings that died.
+        lama_inkubasi:
+          type: integer
+          description: Incubation period in days. Calculated as the difference between the data of hatching and the data of seeding.
+        keterangan:
+          type: string
+          description: Additional information.
+        user_id:
+          type: string
+          description: Foreign key to User table, indicating who logged the hatching event.
+    Tukik:
+      type: object
+      required:
+        - penetasan_id
+        - tanggal
+        - penyu_id
+        - status
+      properties:
+        id:
+          type: string
+        penetasan_id:
+          type: string
+          description: Foreign key to Penetasan table.
+        tanggal:
+          type: string
+          format: date
+          description: The date of the tukik record, auto-generated on creation.
+        penyu_id:
+          type: string
+          description: Foreign key to Penyu table, indicating the turtle species associated with the tukik.
+        status:
+          type: string
+          enum: [karantina, dilepaskan]
+          description: Status of the tukik, default is 'karantina'.
+    Pelepasan:
+      type: object
+      required:
+        - tukik_id
+        - tanggal
+        - tukik_dilepas
+        - user_id
+      properties:
+        id:
+          type: string
+        tukik_id:
+          type: string
+          description: Foreign key to Tukik table.
+        tanggal:
+          type: string
+          format: date
+          description: The date of the release, auto-generated on creation.
+        tukik_dilepas:
+          type: integer
+          description: Number of tukiks released.
+        keterangan:
+          type: string
+          description: Additional information.
+        user_id:
+          type: string
+          description: Foreign key to User table, indicating who logged the release event.
