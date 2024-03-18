@@ -12,6 +12,8 @@ paths:
       operationId: listUsers
       tags:
         - Users
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of user objects
@@ -26,6 +28,8 @@ paths:
       operationId: createUser
       tags:
         - Users
+      security:
+        - bearerAuth: []
       requestBody:
         description: User to be created
         required: true
@@ -46,6 +50,8 @@ paths:
       operationId: updateUser
       tags:
         - Users
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -74,6 +80,8 @@ paths:
       operationId: deleteUser
       tags:
         - Users
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -86,12 +94,55 @@ paths:
           description: User deleted successfully
         "404":
           description: User not found
+  /users/login:
+    post:
+      summary: Logs in a user
+      operationId: loginUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login successful, returns user token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "401":
+          description: Unauthorized, invalid login credentials
+  /users/logout:
+    post:
+      summary: Logs out the current user
+      operationId: logoutUser
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Logout successful
   /pos:
     get:
       summary: Gets a list of pos (positions)
       operationId: listPos
       tags:
         - Pos
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of pos objects
@@ -106,6 +157,8 @@ paths:
       operationId: createPos
       tags:
         - Pos
+      security:
+        - bearerAuth: []
       requestBody:
         description: Pos to be created
         required: true
@@ -126,6 +179,8 @@ paths:
       operationId: updatePos
       tags:
         - Pos
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -154,6 +209,8 @@ paths:
       operationId: deletePos
       tags:
         - Pos
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -166,12 +223,15 @@ paths:
           description: Pos deleted successfully
         "404":
           description: Pos not found
+
   /penyu:
     get:
       summary: Gets a list of turtles (penyu)
       operationId: listPenyu
       tags:
         - Penyu
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of turtle objects
@@ -186,6 +246,8 @@ paths:
       operationId: createPenyu
       tags:
         - Penyu
+      security:
+        - bearerAuth: []
       requestBody:
         description: Turtle to be created
         required: true
@@ -206,6 +268,8 @@ paths:
       operationId: updatePenyu
       tags:
         - Penyu
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -234,6 +298,8 @@ paths:
       operationId: deletePenyu
       tags:
         - Penyu
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -246,12 +312,15 @@ paths:
           description: Penyu deleted successfully
         "404":
           description: Penyu not found
+
   /pendaratan:
     get:
       summary: Gets a list of pendaratan records
       operationId: listPendaratan
       tags:
         - Pendaratan
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of pendaratan records
@@ -266,6 +335,8 @@ paths:
       operationId: createPendaratan
       tags:
         - Pendaratan
+      security:
+        - bearerAuth: []
       requestBody:
         description: Pendaratan record to be created
         required: true
@@ -286,6 +357,8 @@ paths:
       operationId: updatePendaratan
       tags:
         - Pendaratan
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -309,12 +382,15 @@ paths:
                 $ref: "#/components/schemas/Pendaratan"
         "404":
           description: Pendaratan record not found
+
   /persemaian:
     get:
       summary: Gets a list of persemaian records
       operationId: listPersemaian
       tags:
         - Persemaian
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of persemaian records
@@ -329,6 +405,8 @@ paths:
       operationId: createPersemaian
       tags:
         - Persemaian
+      security:
+        - bearerAuth: []
       requestBody:
         description: Persemaian record to be created
         required: true
@@ -349,6 +427,8 @@ paths:
       operationId: updatePersemaian
       tags:
         - Persemaian
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -372,12 +452,15 @@ paths:
                 $ref: "#/components/schemas/Persemaian"
         "404":
           description: Persemaian record not found
+
   /penetasan:
     get:
       summary: Gets a list of penetasan records
       operationId: listPenetasan
       tags:
         - Penetasan
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of penetasan records
@@ -392,6 +475,8 @@ paths:
       operationId: createPenetasan
       tags:
         - Penetasan
+      security:
+        - bearerAuth: []
       requestBody:
         description: Penetasan record to be created
         required: true
@@ -412,6 +497,8 @@ paths:
       operationId: updatePenetasan
       tags:
         - Penetasan
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -435,12 +522,15 @@ paths:
                 $ref: "#/components/schemas/Penetasan"
         "404":
           description: Penetasan record not found
+
   /tukik:
     get:
       summary: Gets a list of tukik records
       operationId: listTukik
       tags:
         - Tukik
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of tukik records
@@ -455,6 +545,8 @@ paths:
       operationId: createTukik
       tags:
         - Tukik
+      security:
+        - bearerAuth: []
       requestBody:
         description: Tukik record to be created
         required: true
@@ -475,6 +567,8 @@ paths:
       operationId: updateTukik
       tags:
         - Tukik
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -498,12 +592,15 @@ paths:
                 $ref: "#/components/schemas/Tukik"
         "404":
           description: Tukik record not found
+
   /pelepasan:
     get:
       summary: Gets a list of pelepasan records
       operationId: listPelepasan
       tags:
         - Pelepasan
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: A JSON array of pelepasan records
@@ -518,6 +615,8 @@ paths:
       operationId: createPelepasan
       tags:
         - Pelepasan
+      security:
+        - bearerAuth: []
       requestBody:
         description: Pelepasan record to be created
         required: true
@@ -538,6 +637,8 @@ paths:
       operationId: updatePelepasan
       tags:
         - Pelepasan
+      security:
+        - bearerAuth: []
       parameters:
         - in: path
           name: id
@@ -563,6 +664,11 @@ paths:
           description: Pelepasan record not found
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       type: object
